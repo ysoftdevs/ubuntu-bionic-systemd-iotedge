@@ -6,6 +6,7 @@ RUN curl https://packages.microsoft.com/config/ubuntu/18.04/multiarch/prod.list 
   cp ./microsoft.gpg /etc/apt/trusted.gpg.d/ &&\
   apt-get update &&\
   apt-get install -y moby-engine nano aziot-edge &&\
+  touch /etc/aziot/config/config.toml &&\
   ln -s /etc/aziot/config/config.toml /etc/aziot/config.toml
 # connect CM to /etc/aziot/config.toml
 # iotedge config apply
