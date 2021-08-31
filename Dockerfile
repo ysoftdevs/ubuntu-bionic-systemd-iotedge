@@ -14,5 +14,4 @@ RUN curl https://packages.microsoft.com/config/ubuntu/18.04/multiarch/prod.list 
    >> /etc/systemd/system/aziot-init.service &&\
   systemctl enable aziot-init.service
   
-# connect CM to /etc/aziot/config.toml
-# iotedge config apply
+# connect CM to /etc/aziot/config/config.toml
