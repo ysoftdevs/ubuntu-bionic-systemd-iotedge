@@ -9,6 +9,10 @@ RUN curl https://packages.microsoft.com/config/ubuntu/18.04/multiarch/prod.list 
   #mkdir -p /etc/aziot/config &&\
   #touch /etc/aziot/config/config.toml &&\
   ln -s /etc/aziot/config/config.toml /etc/aziot/config.toml &&\
-  rm -rf /var/lib/{apt,dpkg,cache,log}/
+  rm -rf /var/lib/{apt,dpkg,cache,log}/ &&\
+  printf '[Unit] \nDescription=FOO BAR \n \n[Service] \nType=oneshot \nExecStart=/usr/bin/iotedge config apply \n \n[Install] \nWantedBy=aziot-edged.service' \
+   >> /etc/systemd/system/aziot-init.service &&\
+  systemctl daemon-reload && systemctl enable aziot-init.service
+  
 # connect CM to /etc/aziot/config.toml
 # iotedge config apply
